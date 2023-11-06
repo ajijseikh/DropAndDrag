@@ -4,9 +4,9 @@ import Item from "./components/Item.js";
 
 import Post from "./components/Preview.js";
 const initialLists = [
-  { id: "list-1", title: "List 1", items: ["Item 1", ] },
-  { id: "list-2", title: "List 2", items: ["Item 2", ] },
-  { id: "list-3", title: "List 3", items: ["Item 3", ] },
+  { id: "list-1", title: "List 1", items: ["Item 1"] },
+  { id: "list-2", title: "List 2", items: ["Item 2"] },
+  { id: "list-3", title: "List 3", items: ["Item 3"] },
 ];
 
 function App() {
@@ -39,7 +39,6 @@ function App() {
         items: [newListTitle],
       };
 
-      console.log("list", ...lists);
       setLists([...lists, newList]);
 
       setNewListTitle("");
@@ -122,11 +121,8 @@ function App() {
           <span className="list ml-5 p-1 m-1 ">Items</span>
           <span className="list ml-5 p-1 m-1 ">Belong To</span>
         </div>
+
         <Item cateAns={lists} />
-      </div>
-      <div>
-        {/* <Preview /> */}
-        <Post />
       </div>
     </div>
   );

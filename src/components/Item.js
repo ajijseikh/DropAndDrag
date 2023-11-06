@@ -1,25 +1,16 @@
 import React, { useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
-
 const initialLists = [
   { id: "list-1", title: "List 1", items: ["Ans 1", "Ans 2 ", "Ans 3"] },
 ];
 
-function Item({cateAns}) {
-
-  
-  console.log("cate",cateAns);
+function Item({ cateAns }) {
   const [lists, setLists] = useState(initialLists);
   const [newListTitle, setNewListTitle] = useState("");
   const [selectedOption, setSelectedOption] = useState("One");
-  const [selectedOptionTwo, setSelectedOptionTwo] = useState('One');
-  const [selectedOptionThree, setSelectedOptionThree] = useState('One');
-
-
-
-
- 
+  const [selectedOptionTwo, setSelectedOptionTwo] = useState("One");
+  const [selectedOptionThree, setSelectedOptionThree] = useState("One");
 
   const onDragEnd = (result) => {
     if (!result.destination) {
@@ -59,9 +50,9 @@ function Item({cateAns}) {
     setLists(filteredLists);
   };
 
-  const handleChange=(e)=>{
-  setSelectedOption(e.target.value)
-  }
+  const handleChange = (e) => {
+    setSelectedOption(e.target.value);
+  };
 
   return (
     <div>
@@ -80,7 +71,6 @@ function Item({cateAns}) {
                   {list.items.map((item, index) => (
                     <Draggable key={item} draggableId={item} index={index}>
                       {(provided, snapshot) => (
-                    
                         <div
                           ref={provided.innerRef}
                           {...provided.draggableProps}
@@ -89,8 +79,6 @@ function Item({cateAns}) {
                         >
                           {item}
                         </div>
-                      
-                      
                       )}
                     </Draggable>
                   ))}
@@ -111,11 +99,13 @@ function Item({cateAns}) {
                 >
                   <option value="One">--select item--</option>
 
-                  {cateAns.map((list,index)=>list.items.map((item)=>(
-                   <option value={item}>{item}</option>
-                  )
-
-                  ))}
+                  {cateAns.map((list, index) =>
+                    list.items.map((item, index) => (
+                      <option key={index} value={item}>
+                        {item}
+                      </option>
+                    ))
+                  )}
                 </select>
               </label>
               {/* second */}
@@ -126,11 +116,13 @@ function Item({cateAns}) {
                   onChange={(e) => setSelectedOptionTwo(e.target.value)}
                 >
                   <option value="One">--select item--</option>
-                  {cateAns.map((list,index)=>list.items.map((item)=>(
-                   <option value={item}>{item}</option>
-                  )
-
-                  ))}
+                  {cateAns.map((list, index) =>
+                    list.items.map((item, index) => (
+                      <option key={index} value={item}>
+                        {item}
+                      </option>
+                    ))
+                  )}
                 </select>
               </label>
               {/* third */}
@@ -141,11 +133,13 @@ function Item({cateAns}) {
                   onChange={(e) => setSelectedOptionThree(e.target.value)}
                 >
                   <option value="One">--select item--</option>
-                  {cateAns.map((list,index)=>list.items.map((item)=>(
-                   <option value={item}>{item}</option>
-                  )
-
-                  ))}
+                  {cateAns.map((list, index) =>
+                    list.items.map((item, index) => (
+                      <option key={index} value={item}>
+                        {item}
+                      </option>
+                    ))
+                  )}
                 </select>
               </label>
             </div>
@@ -155,16 +149,19 @@ function Item({cateAns}) {
       {/* add Button */}
       <div>
         <input
-        className="border ml-5"
+          className="border ml-5"
           type="text"
           placeholder={`Item ${lists.length} Option`}
           value={newListTitle}
           onChange={(e) => setNewListTitle(e.target.value)}
         />
-        <button onClick={handleAddList} className="border ml-3 rounded-sm bg-slate-400 p-.5">Add Item</button>
+        <button
+          onClick={handleAddList}
+          className="border ml-3 rounded-sm bg-slate-400 p-.5"
+        >
+          Add Item
+        </button>
       </div>
-
-
     </div>
   );
 }
